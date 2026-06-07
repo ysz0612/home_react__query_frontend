@@ -32,6 +32,19 @@ const SalePage = () => {
     });
   };
 
+const handleKeyDown = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    if (form.id) {
+      updateHandler(); // 수정 모드
+    } else {
+      registerHandler(); // 등록 모드
+    }
+  }
+};
+
+
   const resetForm = () => {
     setForm({
       id: "",
@@ -74,49 +87,55 @@ const SalePage = () => {
     <Container>
       <Title>판매 관리</Title>
 
-      <InputGroup>
-        <Input
-          name="user_id"
-          placeholder="회원번호"
-          value={form.user_id}
-          onChange={changeHandler}
-        />
+        <InputGroup>
+          <Input
+            name="user_id"
+            placeholder="회원번호"
+            value={form.user_id ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="product_id"
-          placeholder="상품번호"
-          value={form.product_id}
-          onChange={changeHandler}
-        />
+          <Input
+            name="product_id"
+            placeholder="상품번호"
+            value={form.product_id ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="quantity"
-          placeholder="수량"
-          value={form.quantity}
-          onChange={changeHandler}
-        />
+          <Input
+            name="quantity"
+            placeholder="수량"
+            value={form.quantity ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="discount_rate"
-          placeholder="할인율"
-          value={form.discount_rate}
-          onChange={changeHandler}
-        />
+          <Input
+            name="discount_rate"
+            placeholder="할인율"
+            value={form.discount_rate ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="total_price"
-          placeholder="총금액"
-          value={form.total_price}
-          onChange={changeHandler}
-        />
+          <Input
+            name="total_price"
+            placeholder="총금액"
+            value={form.total_price ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="created_at"
-          placeholder="YYYY-MM-DD"
-          value={form.created_at}
-          onChange={changeHandler}
-        />
-      </InputGroup>
+          <Input
+            name="created_at"
+            placeholder="YYYY-MM-DD"
+            value={form.created_at ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
+        </InputGroup>
 
       <ButtonBox>
         <ActionButton onClick={registerHandler}>
@@ -131,7 +150,6 @@ const SalePage = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>회원</th>
             <th>상품</th>
             <th>수량</th>
@@ -145,12 +163,11 @@ const SalePage = () => {
         <tbody>
           {sales.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
               <td>{item.user_id}</td>
               <td>{item.product_id}</td>
               <td>{item.quantity}</td>
               <td>{item.discount_rate}</td>
-              <td>{item.total_price.toLocaleString()}원</td>
+              <td>{(item.total_price ?? 0).toLocaleString()}원</td>
               <td>{item.created_at}</td>
 
               <td>
@@ -171,9 +188,7 @@ const SalePage = () => {
                 </SmallButton>
 
                 <DeleteButton
-                  onClick={() =>
-                    deleteMutation.mutate(item.id)
-                  }
+                  onClick={() => deleteMutation.mutate(item.id)}
                 >
                   삭제
                 </DeleteButton>
@@ -182,6 +197,7 @@ const SalePage = () => {
           ))}
         </tbody>
       </Table>
+
     </Container>
   );
 };

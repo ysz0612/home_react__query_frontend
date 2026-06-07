@@ -31,6 +31,21 @@ const ProductPage = () => {
     });
   };
 
+// changeHandler 아래에 추가
+
+const handleKeyDown = (e) => {
+  if (e.key === "Enter") {
+    if (form.id) {
+      // 수정 모드
+      updateHandler();
+    } else {
+      // 등록 모드
+      registerHandler();
+    }
+  }
+};
+
+
   const resetForm = () => {
     setForm({
       id: "",
@@ -68,42 +83,47 @@ const ProductPage = () => {
     <Container>
       <Title>상품 관리</Title>
 
-      <InputGroup>
-        <Input
-          name="product_name"
-          placeholder="상품명"
-          value={form.product_name}
-          onChange={changeHandler}
-        />
+        <InputGroup>
+          <Input
+            name="product_name"
+            placeholder="상품명"
+            value={form.product_name ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="color"
-          placeholder="색상"
-          value={form.color}
-          onChange={changeHandler}
-        />
+          <Input
+            name="color"
+            placeholder="색상"
+            value={form.color ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="cost_price"
-          placeholder="원가"
-          value={form.cost_price}
-          onChange={changeHandler}
-        />
+          <Input
+            name="cost_price"
+            placeholder="원가"
+            value={form.cost_price ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="sale_price"
-          placeholder="판매가"
-          value={form.sale_price}
-          onChange={changeHandler}
-        />
+          <Input
+            name="sale_price"
+            placeholder="판매가"
+            value={form.sale_price ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
 
-        <Input
-          name="category_code"
-          placeholder="카테고리"
-          value={form.category_code}
-          onChange={changeHandler}
-        />
-      </InputGroup>
+          <Input
+            name="category_code"
+            placeholder="카테고리"
+            value={form.category_code ?? ""}
+            onChange={changeHandler}
+            onKeyDown={handleKeyDown}
+          />
+        </InputGroup>
 
       <ButtonBox>
         <ActionButton onClick={registerHandler}>
@@ -118,7 +138,6 @@ const ProductPage = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>상품명</th>
             <th>색상</th>
             <th>원가</th>
@@ -131,22 +150,22 @@ const ProductPage = () => {
         <tbody>
           {products.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
               <td>{item.product_name}</td>
-              <td>{item.color}</td>
-              <td>{item.cost_price.toLocaleString()}원</td>
-              <td>{item.sale_price.toLocaleString()}원</td>
-              <td>{item.category_code}</td>
+              <td>{item.color ?? "-"}</td>
+              <td>{(item.cost_price ?? 0).toLocaleString()}원</td>
+              <td>{(item.sale_price ?? 0).toLocaleString()}원</td>
+              <td>{item.category_code ?? "-"}</td>
+
               <td>
                 <SmallButton
                   onClick={() =>
                     setForm({
-                      id: item.id,
-                      product_name: item.product_name,
-                      color: item.color,
-                      cost_price: item.cost_price,
-                      sale_price: item.sale_price,
-                      category_code: item.category_code,
+                      id: item.id ?? "",
+                      product_name: item.product_name ?? "",
+                      color: item.color ?? "",
+                      cost_price: item.cost_price ?? "",
+                      sale_price: item.sale_price ?? "",
+                      category_code: item.category_code ?? "",
                     })
                   }
                 >
@@ -154,9 +173,7 @@ const ProductPage = () => {
                 </SmallButton>
 
                 <DeleteButton
-                  onClick={() =>
-                    deleteMutation.mutate(item.id)
-                  }
+                  onClick={() => deleteMutation.mutate(item.id)}
                 >
                   삭제
                 </DeleteButton>

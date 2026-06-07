@@ -117,6 +117,22 @@
       "cost_price": 17246,
       "sale_price": 25732,
       "category_code": "E2"
+    },
+    {
+      "id": "fNRB2cNBXCw",
+      "product_name": "악세서리 8",
+      "color": "Purple",
+      "cost_price": 15000,
+      "sale_price": 30000,
+      "category_code": "E1"
+    },
+    {
+      "product_name": "이어폰 9",
+      "color": "Black",
+      "cost_price": 16000,
+      "sale_price": 40000,
+      "category_code": "E3",
+      "id": "bGRjU4mfwN8"
     }
   ],
   "sales": [
@@ -125,7 +141,7 @@
       "user_id": 79,
       "product_id": 68,
       "quantity": 5,
-      "discount_rate": 0.1,
+      "discount_rate": 0.2,
       "total_price": 86445,
       "created_at": "2026-04-24"
     },
@@ -146,6 +162,15 @@
       "discount_rate": 0.15,
       "total_price": 167269,
       "created_at": "2026-03-08"
+    },
+    {
+      "user_id": 89,
+      "product_id": 74,
+      "quantity": 2,
+      "discount_rate": 0.1,
+      "total_price": 54200,
+      "created_at": "2026.06.08",
+      "id": "h-cjgswH_aM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
