@@ -108,7 +108,7 @@
       "color": "Red",
       "cost_price": 29711,
       "sale_price": 70400,
-      "category_code": "E6"
+      "category_code": "E5"
     },
     {
       "id": "7",
@@ -119,20 +119,20 @@
       "category_code": "E2"
     },
     {
-      "id": "fNRB2cNBXCw",
-      "product_name": "악세서리 8",
-      "color": "Purple",
-      "cost_price": 15000,
-      "sale_price": 30000,
-      "category_code": "E1"
-    },
-    {
+      "id": "bGRjU4mfwN8",
       "product_name": "이어폰 9",
       "color": "Black",
       "cost_price": 16000,
-      "sale_price": 40000,
-      "category_code": "E3",
-      "id": "bGRjU4mfwN8"
+      "sale_price": 32000,
+      "category_code": "E3"
+    },
+    {
+      "id": "VBqSXHeFBgE",
+      "product_name": "그립톡8",
+      "color": "White",
+      "cost_price": 15876,
+      "sale_price": 45000,
+      "category_code": "E1"
     }
   ],
   "sales": [
